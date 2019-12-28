@@ -18,10 +18,18 @@ class ForumController extends AbstractController
     }
 
     /**
-    * @Route("/", name="home")
-    */
+     * @Route("/", name="home")
+     */
     public function home()
     {
         return $this->render('forum/home.html.twig');
+    }
+
+    /**
+     * @Route("/forum/post/12", name="blog_show")
+     */
+    public function show()
+    {
+        return $this->render('forum/show.html.twig');
     }
 }
