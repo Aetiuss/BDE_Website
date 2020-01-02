@@ -14,9 +14,7 @@ class PostType extends AbstractType
         $builder
             ->add('title')
             ->add('content')
-            ->add('picture')
-            ->add('createdAt')
-        ;
+            ->add('picture');
     }
 
     public function configureOptions(OptionsResolver $resolver)

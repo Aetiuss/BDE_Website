@@ -6,6 +6,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Post;
 use App\Repository\PostRepository;
+use App\Form\PostType;
+
+use Doctrine\ORM\EntityManagerInterface as ORMEntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 class ForumController extends AbstractController
 {
@@ -31,7 +35,7 @@ class ForumController extends AbstractController
     }
 
     /**
-     * @Route("/forum/post/{id}", name="blog_show")
+     * @Route("/forum/post/{id}", name="forum_show")
      */
     public function show(PostRepository $repo, $id)
     {
@@ -47,11 +51,33 @@ class ForumController extends AbstractController
 
 
     /**
-     * @Route("/forum/new", name="blog_create")
-     * @Route("/forum/{id}/edit", name="blog_create")
+     * @Route("/forum/new", name="forum_create")
+     * @Route("/forum/post/{id}/edit", name="forum_edit")
      */
-    public function create()
+    public function form(Post $post = null, Request $request, ORMEntityManagerInterface $manager)
     {
-        return $this->render('blog/create.html.twig');
+        if (!$post) {
+            $post = new Post();
+        }
+
+        $form = $this->createForm(PostType::class, $post);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if (!$post->getId()) {
+                $post->SetCreatedAt(new \Datetime());
+            }
+
+            $manager->persist($post);
+            $manager->flush();
+
+            return $this->redirectToRoute('forum_show', ['id' => $post->getId()]);
+        }
+
+        return $this->render('forum/create.html.twig', [
+            'formPost' => $form->createView(),
+            'editMode' => $post->getId() !== null
+        ]);
     }
 }

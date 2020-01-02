@@ -1,10 +1,32 @@
 {% extends "base.html.twig" %}
 
+{% form_theme formPost 'bootstrap_4_layout.html.twig' %}
+
 {% block body %}
 	{% if editMode %}
-		<h1>Edition de l'article</h1>
+
+		<h1>Edition du post</h1>
 
 	{% else %}
-		<h1>Création d'un article</h1>
+		<h1>Création d'un post</h1>
+
 	{% endif %}
+
+	{{ form_start(formPost) }}
+
+	{{ form_row(formPost.title, {"attr":{"placeholder": "Titre du post"}})}}
+	{{ form_row(formPost.content, {"attr":{"placeholder": "Contenu du post"}})}}
+	{{ form_row(formPost.picture, {"attr":{"placeholder": "Image du post"}})}}
+
+	<button type="submit" class="btn btn-success">
+		{% if editMode %}
+			Faire la modification
+
+		{% else %}
+			Ajouter le post
+
+		{% endif %}
+	</button>
+
+	{{ form_end(formPost) }}
 {% endblock %}
