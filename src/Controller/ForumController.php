@@ -44,4 +44,14 @@ class ForumController extends AbstractController
             ]
         );
     }
+
+
+    /**
+     * @Route("/forum/new", name="blog_create")
+     * @Route("/forum/{id}/edit", name="blog_create")
+     */
+    public function create()
+    {
+        return $this->render('blog/create.html.twig');
+    }
 }

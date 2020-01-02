@@ -24,11 +24,19 @@
 						<a class="nav-link" href="/forum">Forum</a>
 					</li>
 				</ul>
+				<div class="collapse navbar-collapse" id="navbarColor03">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item">
+							<a class="nav-link" href="/forum/new">Faire un post</a>
+						</li>
+					</ul>
 
-			</div>
-		</nav>
-		<div class="container"> {% block body %}{% endblock %}
-			</div>
-			{% block javascripts %}{% endblock %}
+
+				</div>
+			</nav>
+			<div class="container"> {% block body %}{% endblock %}
+				</div>
+				{% block javascripts %}{% endblock %}
+			</body>
 		</body>
 	</html>

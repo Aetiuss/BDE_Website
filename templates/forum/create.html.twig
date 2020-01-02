@@ -1,0 +1,10 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+	{% if editMode %}
+		<h1>Edition de l'article</h1>
+
+	{% else %}
+		<h1>Création d'un article</h1>
+	{% endif %}
+{% endblock %}
