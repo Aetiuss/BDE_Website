@@ -12,13 +12,13 @@ class PostFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         for ($i = 1; $i <= 10; $i++) {
-            $article = new Post();
-            $article->setTitle("Titre de l'article n°$i")
-                ->setContent("<p>Contenu de l'article n°$i<p>")
+            $post = new Post();
+            $post->setTitle("Titre du post n°$i")
+                ->setContent("<p>Contenu du post n°$i<p>")
                 ->setPicture("http://placehold.it/350x150")
                 ->setCreatedAt(new \DateTime());
 
-            $manager->persist($article);
+            $manager->persist($post);
         }
         $manager->flush();
     }

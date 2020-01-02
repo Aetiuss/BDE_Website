@@ -4,16 +4,21 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Post;
+use App\Repository\PostRepository;
 
 class ForumController extends AbstractController
 {
     /**
      * @Route("/forum", name="forum")
      */
-    public function index()
+    public function index(PostRepository $repo)
     {
+        $posts = $repo->findAll();
+
         return $this->render('forum/index.html.twig', [
             'controller_name' => 'ForumController',
+            "posts" => $posts
         ]);
     }
 
@@ -26,10 +31,17 @@ class ForumController extends AbstractController
     }
 
     /**
-     * @Route("/forum/post/12", name="blog_show")
+     * @Route("/forum/post/{id}", name="blog_show")
      */
-    public function show()
+    public function show(PostRepository $repo, $id)
     {
-        return $this->render('forum/show.html.twig');
+        $post = $repo->find($id);
+
+        return $this->render(
+            'forum/show.html.twig',
+            [
+                'post' => $post
+            ]
+        );
     }
 }

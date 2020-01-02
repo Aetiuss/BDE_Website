@@ -2,15 +2,15 @@
 
 {% block body %}
 	<post>
-		<h2>Titre du post</h2>
-		<div class="metadata">Ecrit le 28/12/2019 à 10:19 dans la catégorie Politique</div>
+		<h2>{{ post.title }}</h2>
+		<div class="metadata">Ecrit le
+			{{ post.createdAt | date('d/m/Y')}}
+			à
+			{{ post.createdAt | date('h:i') }}
+			dans la catégorie Politique</div>
 		<div class="content">
-			<img src="http://placehold.it/350x150" alt="">
-			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni ut tempora deserunt ipsam, quasi temporibus.</p>
-			<p>Quo voluptates rem, ab quaerat dolorem tempore nam adipisci saepe corporis, rerum, dolorum impedit ratione!</p>
-			<hr>
-			<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum accusantium expedita modi. Explicabo sint architecto ipsum excepturi? Quos exercitationem autem minus excepturi aliquam vitae ut praesentium aperiam labore numquam, unde soluta quis tempora adipisci, aliquid quam dolore voluptas quod laudantium magni ab dolores esse quia? Voluptatem consequatur eaque veniam hic?</p>
-			<p>Reprehenderit dolorem aperiam repudiandae laudantium perspiciatis! Eaque commodi ex odio cumque itaque sequi similique nam error nisi in voluptatibus accusamus illo eius adipisci asperiores voluptatem expedita placeat vitae doloribus ducimus incidunt, nihil labore consequuntur tempore. Veritatis alias, ullam aperiam sit corrupti praesentium, dignissimos cupiditate explicabo repudiandae blanditiis fugiat velit impedit!</p>
+			<img src="{{ post.picture }}" alt="">
+			{{ post.content | raw }}
 		</div>
 	</post>
 {% endblock %}
