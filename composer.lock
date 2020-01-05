@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b20f46a7fddb0abe3c5ff55d45b55de4",
+    "content-hash": "f72acc63a83fa0b2c6d72525f109ef12",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -311,16 +311,16 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "v2.10.0",
+            "version": "v2.10.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "0c9a646775ef549eb0a213a4f9bd4381d9b4d934"
+                "reference": "c2b8e6e82732a64ecde1cddf9e1e06cb8556e3d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/0c9a646775ef549eb0a213a4f9bd4381d9b4d934",
-                "reference": "0c9a646775ef549eb0a213a4f9bd4381d9b4d934",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/c2b8e6e82732a64ecde1cddf9e1e06cb8556e3d8",
+                "reference": "c2b8e6e82732a64ecde1cddf9e1e06cb8556e3d8",
                 "shasum": ""
             },
             "require": {
@@ -399,7 +399,7 @@
                 "sqlserver",
                 "sqlsrv"
             ],
-            "time": "2019-11-03T16:50:43+00:00"
+            "time": "2020-01-04T12:56:21+00:00"
         },
         {
             "name": "doctrine/doctrine-bundle",
@@ -1146,27 +1146,26 @@
         },
         {
             "name": "egulias/email-validator",
-            "version": "2.1.12",
+            "version": "2.1.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/egulias/EmailValidator.git",
-                "reference": "a6255605af39f2db7f5cb62e672bd8a7bad8d208"
+                "reference": "834593d5900615639208417760ba6a17299e2497"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/a6255605af39f2db7f5cb62e672bd8a7bad8d208",
-                "reference": "a6255605af39f2db7f5cb62e672bd8a7bad8d208",
+                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/834593d5900615639208417760ba6a17299e2497",
+                "reference": "834593d5900615639208417760ba6a17299e2497",
                 "shasum": ""
             },
             "require": {
                 "doctrine/lexer": "^1.0.1",
-                "php": ">= 5.5"
+                "php": ">=5.5"
             },
             "require-dev": {
-                "dominicsayers/isemail": "dev-master",
-                "phpunit/phpunit": "^4.8.35||^5.7||^6.0",
-                "satooshi/php-coveralls": "^1.0.1",
-                "symfony/phpunit-bridge": "^4.4@dev"
+                "dominicsayers/isemail": "^3.0.7",
+                "phpunit/phpunit": "^4.8.36|^7.5.15",
+                "satooshi/php-coveralls": "^1.0.1"
             },
             "suggest": {
                 "ext-intl": "PHP Internationalization Libraries are required to use the SpoofChecking validation"
@@ -1200,7 +1199,57 @@
                 "validation",
                 "validator"
             ],
-            "time": "2019-12-20T12:49:39+00:00"
+            "time": "2019-12-30T08:14:25+00:00"
+        },
+        {
+            "name": "fzaninotto/faker",
+            "version": "v1.9.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fzaninotto/Faker.git",
+                "reference": "fc10d778e4b84d5bd315dad194661e091d307c6f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/fc10d778e4b84d5bd315dad194661e091d307c6f",
+                "reference": "fc10d778e4b84d5bd315dad194661e091d307c6f",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3.3 || ^7.0"
+            },
+            "require-dev": {
+                "ext-intl": "*",
+                "phpunit/phpunit": "^4.8.35 || ^5.7",
+                "squizlabs/php_codesniffer": "^2.9.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.9-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Faker\\": "src/Faker/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "François Zaninotto"
+                }
+            ],
+            "description": "Faker is a PHP library that generates fake data for you.",
+            "keywords": [
+                "data",
+                "faker",
+                "fixtures"
+            ],
+            "time": "2019-12-12T13:22:17+00:00"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -1386,34 +1435,39 @@
         },
         {
             "name": "ocramius/proxy-manager",
-            "version": "2.2.3",
+            "version": "2.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Ocramius/ProxyManager.git",
-                "reference": "4d154742e31c35137d5374c998e8f86b54db2e2f"
+                "reference": "b7bac968eef945322d1e28d7e833b6a549a6da27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Ocramius/ProxyManager/zipball/4d154742e31c35137d5374c998e8f86b54db2e2f",
-                "reference": "4d154742e31c35137d5374c998e8f86b54db2e2f",
+                "url": "https://api.github.com/repos/Ocramius/ProxyManager/zipball/b7bac968eef945322d1e28d7e833b6a549a6da27",
+                "reference": "b7bac968eef945322d1e28d7e833b6a549a6da27",
                 "shasum": ""
             },
             "require": {
-                "ocramius/package-versions": "^1.1.3",
-                "php": "^7.2.0",
-                "zendframework/zend-code": "^3.3.0"
+                "ocramius/package-versions": "^1.5.1",
+                "php": "^7.4.0",
+                "zendframework/zend-code": "^3.3.1"
+            },
+            "conflict": {
+                "doctrine/annotations": "<1.6.1",
+                "zendframework/zend-stdlib": "<3.2.1"
             },
             "require-dev": {
-                "couscous/couscous": "^1.6.1",
+                "couscous/couscous": "^1.7.2",
+                "doctrine/coding-standard": "^6.0.0",
                 "ext-phar": "*",
-                "humbug/humbug": "1.0.0-RC.0@RC",
-                "nikic/php-parser": "^3.1.1",
-                "padraic/phpunit-accelerator": "dev-master@DEV",
-                "phpbench/phpbench": "^0.12.2",
-                "phpstan/phpstan": "dev-master#856eb10a81c1d27c701a83f167dc870fd8f4236a as 0.9.999",
-                "phpstan/phpstan-phpunit": "dev-master#5629c0a1f4a9c417cb1077cf6693ad9753895761",
-                "phpunit/phpunit": "^6.4.3",
-                "squizlabs/php_codesniffer": "^2.9.1"
+                "infection/infection": "^0.13.4",
+                "nikic/php-parser": "^4.2.2",
+                "phpbench/phpbench": "^0.16.9",
+                "phpunit/phpunit": "^8.3.3",
+                "slevomat/coding-standard": "^5.0.4",
+                "squizlabs/php_codesniffer": "^3.4.2",
+                "symfony/console": "^4.3.3",
+                "vimeo/psalm": "3.4.11"
             },
             "suggest": {
                 "ocramius/generated-hydrator": "To have very fast object to array to object conversion for ghost objects",
@@ -1428,8 +1482,8 @@
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "ProxyManager\\": "src"
+                "psr-4": {
+                    "ProxyManager\\": "src/ProxyManager"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1452,7 +1506,7 @@
                 "proxy pattern",
                 "service proxies"
             ],
-            "time": "2019-08-10T08:37:15+00:00"
+            "time": "2019-12-17T09:22:43+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -1508,16 +1562,16 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-            "version": "4.3.3",
+            "version": "4.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "2ecaa9fef01634c83bfa8dc1fe35fb5cef223a62"
+                "reference": "da3fd972d6bafd628114f7e7e036f45944b62e9c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/2ecaa9fef01634c83bfa8dc1fe35fb5cef223a62",
-                "reference": "2ecaa9fef01634c83bfa8dc1fe35fb5cef223a62",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/da3fd972d6bafd628114f7e7e036f45944b62e9c",
+                "reference": "da3fd972d6bafd628114f7e7e036f45944b62e9c",
                 "shasum": ""
             },
             "require": {
@@ -1529,6 +1583,7 @@
             "require-dev": {
                 "doctrine/instantiator": "^1.0.5",
                 "mockery/mockery": "^1.0",
+                "phpdocumentor/type-resolver": "0.4.*",
                 "phpunit/phpunit": "^6.4"
             },
             "type": "library",
@@ -1555,7 +1610,7 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-            "time": "2019-12-20T13:40:23+00:00"
+            "time": "2019-12-28T18:55:12+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
@@ -1843,16 +1898,16 @@
         },
         {
             "name": "sensio/framework-extra-bundle",
-            "version": "v5.5.2",
+            "version": "v5.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioFrameworkExtraBundle.git",
-                "reference": "92acfcc610e2180c52790ec3ff2e893f67e76b32"
+                "reference": "98f0807137b13d0acfdf3c255a731516e97015de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/92acfcc610e2180c52790ec3ff2e893f67e76b32",
-                "reference": "92acfcc610e2180c52790ec3ff2e893f67e76b32",
+                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/98f0807137b13d0acfdf3c255a731516e97015de",
+                "reference": "98f0807137b13d0acfdf3c255a731516e97015de",
                 "shasum": ""
             },
             "require": {
@@ -1917,7 +1972,7 @@
                 "annotations",
                 "controllers"
             ],
-            "time": "2019-12-12T16:21:49+00:00"
+            "time": "2019-12-27T08:57:19+00:00"
         },
         {
             "name": "symfony/asset",
@@ -5827,16 +5882,16 @@
         },
         {
             "name": "twig/extra-bundle",
-            "version": "v3.0.0",
+            "version": "v3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/twig-extra-bundle.git",
-                "reference": "c56821429490e351003a09b7ed0c917feec2355f"
+                "reference": "ce5c97dd566d9acd5d1fbd5eb76b6d264614725a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/twig-extra-bundle/zipball/c56821429490e351003a09b7ed0c917feec2355f",
-                "reference": "c56821429490e351003a09b7ed0c917feec2355f",
+                "url": "https://api.github.com/repos/twigphp/twig-extra-bundle/zipball/ce5c97dd566d9acd5d1fbd5eb76b6d264614725a",
+                "reference": "ce5c97dd566d9acd5d1fbd5eb76b6d264614725a",
                 "shasum": ""
             },
             "require": {
@@ -5846,11 +5901,11 @@
                 "twig/twig": "^2.4|^3.0"
             },
             "require-dev": {
-                "twig/cssinliner-extra": "^2.12|^3.0@dev",
-                "twig/html-extra": "^2.12@dev|^3.0@dev",
-                "twig/inky-extra": "^2.12@dev|^3.0@dev",
-                "twig/intl-extra": "^2.12@dev|^3.0@dev",
-                "twig/markdown-extra": "^2.12@dev|^3.0@dev"
+                "twig/cssinliner-extra": "^2.12|^3.0",
+                "twig/html-extra": "^2.12|^3.0",
+                "twig/inky-extra": "^2.12|^3.0",
+                "twig/intl-extra": "^2.12|^3.0",
+                "twig/markdown-extra": "^2.12|^3.0"
             },
             "type": "symfony-bundle",
             "extra": {
@@ -5882,31 +5937,30 @@
                 "extra",
                 "twig"
             ],
-            "time": "2019-10-17T07:30:08+00:00"
+            "time": "2019-12-28T07:09:27+00:00"
         },
         {
             "name": "twig/twig",
-            "version": "v3.0.0",
+            "version": "v3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "9b58bb8ac7a41d72fbb5a7dc643e07923e5ccc26"
+                "reference": "28f856a4c57eeb24485916e8a68403f41a133616"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/9b58bb8ac7a41d72fbb5a7dc643e07923e5ccc26",
-                "reference": "9b58bb8ac7a41d72fbb5a7dc643e07923e5ccc26",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/28f856a4c57eeb24485916e8a68403f41a133616",
+                "reference": "28f856a4c57eeb24485916e8a68403f41a133616",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2.9",
+                "php": "^7.2.5",
                 "symfony/polyfill-ctype": "^1.8",
                 "symfony/polyfill-mbstring": "^1.3"
             },
             "require-dev": {
                 "psr/container": "^1.0",
-                "symfony/debug": "^3.4|^4.2|^5.0",
-                "symfony/phpunit-bridge": "^4.4@dev|^5.0"
+                "symfony/phpunit-bridge": "^4.4|^5.0"
             },
             "type": "library",
             "extra": {
@@ -5932,7 +5986,6 @@
                 },
                 {
                     "name": "Twig Team",
-                    "homepage": "https://twig.symfony.com/contributors",
                     "role": "Contributors"
                 },
                 {
@@ -5946,7 +5999,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2019-11-15T20:38:32+00:00"
+            "time": "2019-12-28T07:17:28+00:00"
         },
         {
             "name": "webmozart/assert",
