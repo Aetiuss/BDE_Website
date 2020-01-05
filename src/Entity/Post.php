@@ -19,11 +19,13 @@ class Post
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min=5, max=255)
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\Length(min=5, max=1023)
      */
     private $content;
 
