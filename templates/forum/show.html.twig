@@ -17,6 +17,8 @@
 	</post>
 
 	<section id="commentaires">
+		<h1>{{ post.comments | length }}
+			Commentaires:</h1>
 		{% for comment in post.comments %}
 			<div class="comment">
 				<div class="card border-dark mb-3" style="max-width: 60rem;">
@@ -32,5 +34,11 @@
 			</div>
 
 		{% endfor %}
+
+		{{ form_start(commentForm) }}
+		{{ form_row(commentForm.content, {"attr": {"placeholder": "Votre message"}}) }}
+		<button type="submit" class="btn btn-success">Commenter !</button>
+		{{ form_end(commentForm) }}
+
 	</section>
 {% endblock %}

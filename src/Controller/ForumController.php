@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Post;
+use App\Form\CommentType;
 use App\Repository\PostRepository;
 use App\Form\PostType;
 
@@ -39,12 +41,17 @@ class ForumController extends AbstractController
      */
     public function show(PostRepository $repo, $id)
     {
+        $comment = new Comment();
+
+        $form = $this->createform(CommentType::class, $comment);
+
         $post = $repo->find($id);
 
         return $this->render(
             'forum/show.html.twig',
             [
-                'post' => $post
+                'post' => $post,
+                'commentForm' => $form->createView()
             ]
         );
     }
@@ -54,7 +61,7 @@ class ForumController extends AbstractController
      * @Route("/forum/new", name="forum_create")
      * @Route("/forum/post/{id}/edit", name="forum_edit")
      */
-    public function form(Post $post = null, Request $request, ORMEntityManagerInterface $manager)
+    public function formPost(Post $post = null, Request $request, ORMEntityManagerInterface $manager)
     {
         if (!$post) {
             $post = new Post();
