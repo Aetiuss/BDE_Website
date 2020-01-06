@@ -15,6 +15,7 @@
 	{{ form_start(formPost) }}
 
 	{{ form_row(formPost.title, {"attr":{"placeholder": "Titre du post"}})}}
+	{{ form_row(formPost.category)}}
 	{{ form_row(formPost.content, {"attr":{"placeholder": "Contenu du post"}})}}
 	{{ form_row(formPost.picture, {"attr":{"placeholder": "Image du post"}})}}
 

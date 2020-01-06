@@ -7,10 +7,30 @@
 			{{ post.createdAt | date('d/m/Y')}}
 			à
 			{{ post.createdAt | date('h:i') }}
-			dans la catégorie Politique</div>
+			dans la catégorie
+			<span class="badge badge-primary">{{ post.category.title }}</span>
+		</div>
 		<div class="content">
 			<img src="{{ post.picture }}" alt="">
 			{{ post.content | raw }}
 		</div>
 	</post>
+
+	<section id="commentaires">
+		{% for comment in post.comments %}
+			<div class="comment">
+				<div class="card border-dark mb-3" style="max-width: 60rem;">
+					<div class="card-header">
+						{{comment.author}}
+						<small>,   le
+							{{comment.createdAt | date('d/m/y à h:i')}}</small>
+					</div>
+					<div class="card-body">
+						<p class="card-text">{{comment.content | raw}}</p>
+					</div>
+				</div>
+			</div>
+
+		{% endfor %}
+	</section>
 {% endblock %}

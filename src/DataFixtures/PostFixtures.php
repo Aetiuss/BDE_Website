@@ -22,7 +22,7 @@ class PostFixtures extends Fixture
         //Faire 3 catégories
         for ($i = 1; $i <= 3; $i++) {
             $category = new Category();
-            
+
             $category->setTitle($faker->word())
                 ->setDescription($faker->paragraph());
 
@@ -46,7 +46,7 @@ class PostFixtures extends Fixture
                 for ($k = 1; $k <= mt_rand(4, 10); $k++) {
                     $comment = new Comment();
 
-                    $content = '<p>' . join($faker->paragraphs(5), '</p><p>') . '</p>';
+                    $content = '<p>' . join($faker->paragraphs(mt_rand(1, 3)), '</p><p>') . '</p>';
 
                     $days = (new \DateTime())->diff($post->getCreatedAt())->days;
 
