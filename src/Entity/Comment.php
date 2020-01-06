@@ -35,7 +35,7 @@ class Comment
      * @ORM\ManyToOne(targetEntity="App\Entity\Post", inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $article;
+    private $post;
 
     public function getId(): ?int
     {
@@ -78,14 +78,14 @@ class Comment
         return $this;
     }
 
-    public function getArticle(): ?Post
+    public function getPost(): ?Post
     {
-        return $this->article;
+        return $this->post;
     }
 
-    public function setArticle(?Post $article): self
+    public function setPost(?Post $post): self
     {
-        $this->article = $article;
+        $this->post = $post;
 
         return $this;
     }

@@ -19,13 +19,16 @@ class PostFixtures extends Fixture
 
         $faker = \Faker\Factory::create('fr_FR');
 
+        //Faire 3 catégories
         for ($i = 1; $i <= 3; $i++) {
             $category = new Category();
+            
             $category->setTitle($faker->word())
                 ->setDescription($faker->paragraph());
 
             $manager->persist($category);
 
+            //Faire 4 à 6 posts
             for ($j = 1; $j <= mt_rand(4, 6); $j++) {
                 $post = new Post();
 
@@ -39,7 +42,7 @@ class PostFixtures extends Fixture
 
                 $manager->persist($post);
 
-
+                //Faire 4 à 10 commentaires
                 for ($k = 1; $k <= mt_rand(4, 10); $k++) {
                     $comment = new Comment();
 
@@ -50,20 +53,10 @@ class PostFixtures extends Fixture
                     $comment->setAuthor($faker->name)
                         ->setContent($content)
                         ->setCreatedAt($faker->dateTimeBetween('-' . $days . ' days '))
-                        ->setArticle($post);
+                        ->setPost($post);
 
                     $manager->persist($comment);
                 }
-            }
-
-            for ($i = 1; $i <= 10; $i++) {
-                $post = new Post();
-                $post->setTitle($faker->sentence())
-                    ->setContent("<p>Contenu du post n°$i<p>")
-                    ->setPicture("http://placehold.it/350x150")
-                    ->setCreatedAt(new \DateTime());
-
-                $manager->persist($post);
             }
             $manager->flush();
         }
