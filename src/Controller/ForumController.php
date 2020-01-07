@@ -84,8 +84,7 @@ class ForumController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             if (!$post->getId()) {
-                $post->SetCreatedAt(new \Datetime())
-                    ->setContent();
+                $post->SetCreatedAt(new \Datetime());
             }
 
             $manager->persist($post);
