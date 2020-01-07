@@ -35,10 +35,14 @@
 
 		{% endfor %}
 
-		{{ form_start(commentForm) }}
-		{{ form_row(commentForm.content, {"attr": {"placeholder": "Votre message"}}) }}
-		<button type="submit" class="btn btn-success">Commenter !</button>
-		{{ form_end(commentForm) }}
+		{% if app.user %}
+
+			{{ form_start(commentForm) }}
+			{{ form_row(commentForm.content, {"attr": {"placeholder": "Votre message"}, "label":"Commentaire"}) }}
+			<button type="submit" class="btn btn-success">Commenter !</button>
+			{{ form_end(commentForm) }}
+
+		{% endif %}
 
 	</section>
 {% endblock %}

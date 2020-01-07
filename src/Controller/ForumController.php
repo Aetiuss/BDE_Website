@@ -56,6 +56,8 @@ class ForumController extends AbstractController
 
             $manager->persist($comment);
             $manager->flush();
+
+            return $this->redirectToRoute('forum_show', ['id' => $post->getId()]);
         }
 
         return $this->render(

@@ -19,7 +19,7 @@
 
 				<div class="content">
 					<img src="{{ post.picture }}" alt="">
-					{{ post.content | raw }}
+					<p>{{ post.content | raw }}</p>
 					<a href="{{ path ('forum_show', {'id': post.id}) }}" class="btn btn-warning">Lire la suite</a>
 				</div>
 				<br>
