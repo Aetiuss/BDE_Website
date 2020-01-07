@@ -6,6 +6,7 @@ use App\Entity\Comment;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Post;
+use App\Entity\User;
 use App\Form\CommentType;
 use App\Repository\PostRepository;
 use App\Form\PostType;
@@ -39,13 +40,23 @@ class ForumController extends AbstractController
     /**
      * @Route("/forum/post/{id}", name="forum_show")
      */
-    public function show(PostRepository $repo, $id)
+    public function show(Post $post, Request $request, ORMEntityManagerInterface $manager)
     {
         $comment = new Comment();
 
         $form = $this->createform(CommentType::class, $comment);
 
-        $post = $repo->find($id);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment->setAuthor($this->getUser())
+                ->setCreatedAt(new \DateTime())
+                ->setPost($post);
+
+
+            $manager->persist($comment);
+            $manager->flush();
+        }
 
         return $this->render(
             'forum/show.html.twig',
@@ -73,7 +84,8 @@ class ForumController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             if (!$post->getId()) {
-                $post->SetCreatedAt(new \Datetime());
+                $post->SetCreatedAt(new \Datetime())
+                    ->setContent();
             }
 
             $manager->persist($post);

@@ -12,7 +12,7 @@
 		</div>
 		<div class="content">
 			<img src="{{ post.picture }}" alt="">
-			{{ post.content | raw }}
+			<p>{{ post.content | raw }}</p>
 		</div>
 	</post>
 
@@ -23,7 +23,7 @@
 			<div class="comment">
 				<div class="card border-dark mb-3" style="max-width: 60rem;">
 					<div class="card-header">
-						{{comment.author}}
+						{{comment.author.username}}
 						<small>,   le
 							{{comment.createdAt | date('d/m/y à h:i')}}</small>
 					</div>
