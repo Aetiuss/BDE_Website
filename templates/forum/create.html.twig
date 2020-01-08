@@ -18,6 +18,7 @@
 	{{ form_row(formPost.category)}}
 	{{ form_row(formPost.content, {"attr":{"placeholder": "Contenu du post"}})}}
 	{{ form_row(formPost.picture, {"attr":{"placeholder": "Image du post"}})}}
+	{{ form_row(formPost.isPrivate, {"label": "Rendre le post privé"})}}
 
 	<button type="submit" class="btn btn-success">
 		{% if editMode %}

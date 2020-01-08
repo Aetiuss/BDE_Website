@@ -8,6 +8,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class PostType extends AbstractType
 {
@@ -20,6 +21,7 @@ class PostType extends AbstractType
                 'class' => Category::class,
                 'choice_label' => 'title'
             ])
+            ->add('isPrivate', CheckboxType::class)
             ->add('picture');
     }
 
