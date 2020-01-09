@@ -3,53 +3,68 @@
 {% block title %}Hello
 	{{ controller_name }}
 {% endblock %}
+
 {% block body %}
-	<section class="post">
 
-		{% if app.user %}
-			{% for post in posts %}
-				<post>
-					<h2>{{ post.title }}</h2>
-					<div class="metadata">Ecrit le
-						{{ post.createdAt | date('d/m/Y') }}
-						à
-						{{ post.createdAt | date('h:i')}}
-						dans la catégorie
-						<span class="badge badge-primary">{{ post.category.title }}</span>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+				f
+			</div>
+			<div class="col-md-9">
+				<section class="post">
+					<div class="grid">
+						{% if app.user %}
+							{% for post in posts %}
+								<post>
+									<h2>{{ post.title }}</h2>
+									<div class="metadata">Ecrit le
+										{{ post.createdAt | date('d/m/Y') }}
+										à
+										{{ post.createdAt | date('h:i')}}
+										dans la catégorie
+										<span class="badge badge-primary">{{ post.category.title }}</span>
+									</div>
+
+									<div class="content">
+										<img src="{{ post.picture }}" alt="">
+										<p>{{ post.content | raw }}</p>
+										<a href="{{ path ('forum_show', {'id': post.id}) }}" class="btn btn-warning">Lire la suite</a>
+									</div>
+									<br>
+									<br>
+								</post>
+							{% endfor %}
+						{% else %}
+							{% for post in posts %}
+								{% if not post.isPrivate %}
+									<post>
+										<h2>{{ post.title }}</h2>
+										<div class="metadata">Ecrit le
+											{{ post.createdAt | date('d/m/Y') }}
+											à
+											{{ post.createdAt | date('h:i')}}
+											dans la catégorie
+											<span class="badge badge-primary">{{ post.category.title }}</span>
+										</div>
+
+										<div class="content">
+											<img src="{{ post.picture }}" alt="">
+											<p>{{ post.content | raw }}</p>
+											<a href="{{ path ('forum_show', {'id': post.id}) }}" class="btn btn-warning">Lire la suite</a>
+										</div>
+										<br>
+										<br>
+									</post>
+								{% endif %}
+							{% endfor %}
+						{% endif %}
+
 					</div>
 
-					<div class="content">
-						<img src="{{ post.picture }}" alt="">
-						<p>{{ post.content | raw }}</p>
-						<a href="{{ path ('forum_show', {'id': post.id}) }}" class="btn btn-warning">Lire la suite</a>
-					</div>
-					<br>
-					<br>
-				</post>
-			{% endfor %}
-		{% else %}
-			{% for post in posts %}
-				{% if not post.isPrivate %}
-					<post>
-						<h2>{{ post.title }}</h2>
-						<div class="metadata">Ecrit le
-							{{ post.createdAt | date('d/m/Y') }}
-							à
-							{{ post.createdAt | date('h:i')}}
-							dans la catégorie
-							<span class="badge badge-primary">{{ post.category.title }}</span>
-						</div>
+				</section>
+			</div>
+		</div>
+	</div>
 
-						<div class="content">
-							<img src="{{ post.picture }}" alt="">
-							<p>{{ post.content | raw }}</p>
-							<a href="{{ path ('forum_show', {'id': post.id}) }}" class="btn btn-warning">Lire la suite</a>
-						</div>
-						<br>
-						<br>
-					</post>
-				{% endif %}
-			{% endfor %}
-		{% endif %}
-	</section>
 {% endblock %}
