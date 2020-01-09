@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Data\SearchData;
 use App\Entity\Comment;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,7 +11,7 @@ use App\Entity\User;
 use App\Form\CommentType;
 use App\Repository\PostRepository;
 use App\Form\PostType;
-
+use App\Form\SearchForm;
 use Doctrine\ORM\EntityManagerInterface as ORMEntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -22,10 +23,14 @@ class ForumController extends AbstractController
     public function index(PostRepository $repo)
     {
         $posts = $repo->findAll();
+        $data = new SearchData();
+        $form = $this->createForm(SearchForm::class, $data);
 
         return $this->render('forum/index.html.twig', [
             'controller_name' => 'ForumController',
-            "posts" => $posts
+            'posts' => $posts,
+            'form' => $form->createView()
+
         ]);
     }
 

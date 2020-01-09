@@ -25,4 +25,9 @@ class SearchData
      * @var nullinteger
      */
     public $min;
+
+    public function __toString()
+    {
+        return $this->title;
+    }
 }

@@ -3,7 +3,11 @@
 namespace App\Form;
 
 use App\Data\SearchData;
+use App\Entity\Category;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -19,6 +23,27 @@ class SearchForm extends AbstractType
                 "required" => false,
                 "attr" => [
                     "placeholder" => "Rechercher"
+                ]
+            ])
+            ->add('categories', Ent::class, [
+                'label' => false,
+                'required' => false,
+                'class' => Category::class,
+                'expanded' => true,
+                'multiple' => true
+            ])
+            ->add('min', DateType::class, [
+                'label' => false,
+                'required' => false,
+                'attr' => [
+                    'placeholder' => 'Date min'
+                ]
+            ])
+            ->add('max', DateType::class, [
+                'label' => false,
+                'required' => false,
+                'attr' => [
+                    'placeholder' => 'Date min'
                 ]
             ]);
     }
