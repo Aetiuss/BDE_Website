@@ -52,9 +52,14 @@ class Post
     private $comments;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $isPrivate;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isSignaled;
 
     public function __construct()
     {
@@ -165,6 +170,18 @@ class Post
     public function setIsPrivate(bool $isPrivate): self
     {
         $this->isPrivate = $isPrivate;
+
+        return $this;
+    }
+
+    public function getIsSignaled(): ?bool
+    {
+        return $this->isSignaled;
+    }
+
+    public function setIsSignaled(?bool $isSignaled): self
+    {
+        $this->isSignaled = $isSignaled;
 
         return $this;
     }
