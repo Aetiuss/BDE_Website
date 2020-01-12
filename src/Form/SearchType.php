@@ -48,7 +48,7 @@ class SearchForm extends AbstractType
             ]);
     }
 
-    public function configuratioOptions(OptionsResolver $resolver)
+    public function configurationOptions(OptionsResolver $resolver)
     {
 
         $resolver->setDefaults([

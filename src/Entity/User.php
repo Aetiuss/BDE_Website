@@ -61,9 +61,15 @@ class User implements UserInterface
      */
     private $roles = [];
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Post", mappedBy="post_report")
+     */
+    private $post_reports;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->post_reports = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -154,6 +160,34 @@ class User implements UserInterface
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Post[]
+     */
+    public function getPostReports(): Collection
+    {
+        return $this->post_reports;
+    }
+
+    public function addPostReport(Post $postReport): self
+    {
+        if (!$this->post_reports->contains($postReport)) {
+            $this->post_reports[] = $postReport;
+            $postReport->addPostReport($this);
+        }
+
+        return $this;
+    }
+
+    public function removePostReport(Post $postReport): self
+    {
+        if ($this->post_reports->contains($postReport)) {
+            $this->post_reports->removeElement($postReport);
+            $postReport->removePostReport($this);
+        }
 
         return $this;
     }

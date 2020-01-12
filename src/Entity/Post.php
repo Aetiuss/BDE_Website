@@ -57,13 +57,14 @@ class Post
     private $isPrivate;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="post_reports")
      */
-    private $isSignaled;
+    private $post_report;
 
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->post_report = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -182,6 +183,32 @@ class Post
     public function setIsSignaled(?bool $isSignaled): self
     {
         $this->isSignaled = $isSignaled;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getPostReport(): Collection
+    {
+        return $this->post_report;
+    }
+
+    public function addPostReport(User $postReport): self
+    {
+        if (!$this->post_report->contains($postReport)) {
+            $this->post_report[] = $postReport;
+        }
+
+        return $this;
+    }
+
+    public function removePostReport(User $postReport): self
+    {
+        if ($this->post_report->contains($postReport)) {
+            $this->post_report->removeElement($postReport);
+        }
 
         return $this;
     }
