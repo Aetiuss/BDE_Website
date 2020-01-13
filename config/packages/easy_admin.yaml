@@ -7,6 +7,8 @@ easy_admin:
         
       User:
         class: App\Entity\User
+        list:
+          fields: ['id', 'username', 'email', 'roles', 'posts']
         form:
           fields:
             - {property: 'username' }
@@ -14,12 +16,9 @@ easy_admin:
             - {property: 'roles' }
       Post:
         class: App\Entity\Post
-        form:
-          fields:
-            - {property: 'title' }
-            - {property: 'category' }
-            - {property: 'createdAt' }
-            - {property: 'post_report' }
+        list:
+          fields: ['id', 'title', 'category', 'user.username', 'createdAt', 'post_report']
+
     design:
       assets:
         css: 
