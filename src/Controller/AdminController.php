@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminController extends AbstractController
 {
     /**
-     * @Route("/admin", name="admin")
+     * @Route("/admin_2", name="admin")
      */
     public function index(UserRepository $uRepo, CategoryRepository $cRepo)
     {
@@ -21,6 +21,7 @@ class AdminController extends AbstractController
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
             'users' => $users,
+            'categories' => $categories,
         ]);
     }
 }

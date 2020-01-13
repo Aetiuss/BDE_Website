@@ -114,12 +114,10 @@ class User implements UserInterface
     }
 
     public function eraseCredentials()
-    {
-    }
+    { }
 
     public function getSalt()
-    {
-    }
+    { }
 
     public function getRoles()
     {
@@ -190,5 +188,10 @@ class User implements UserInterface
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->title;
     }
 }

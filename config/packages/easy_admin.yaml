@@ -1,0 +1,27 @@
+easy_admin:
+    entities:
+      Category:
+        class: App\Entity\Category
+        list:
+                fields: ['id', 'title', 'description', 'posts']
+        
+      User:
+        class: App\Entity\User
+        form:
+          fields:
+            - {property: 'username' }
+            - {property: 'email' }
+            - {property: 'roles' }
+      Post:
+        class: App\Entity\Post
+        form:
+          fields:
+            - {property: 'title' }
+            - {property: 'category' }
+            - {property: 'createdAt' }
+            - {property: 'post_report' }
+    design:
+      assets:
+        css: 
+          - '/public/css/bootstrap.min.css'
+          - '/public/css/style.css'
