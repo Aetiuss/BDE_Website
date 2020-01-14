@@ -6,7 +6,7 @@ class SearchData
 {
 
     /**
-     * @par string
+     * @var string
      */
     public $q = "";
 
