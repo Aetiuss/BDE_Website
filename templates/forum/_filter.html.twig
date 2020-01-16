@@ -1,17 +1,22 @@
 {{ form_start(form, {attr: {class: 'filter'}}) }}
 
-{{ form_row(form.q)}}
+<h5>Rechercher par termes:</h5>
+<div class="row">
+	{{ form_row(form.q)}}
+</div>
 
-<h4>Catégories :</h4>
+<h5>Catégories :</h5>
+<div class="row">
+	{{ form_row(form.categories)}}
+</div>
 
-{{ form_row(form.categories)}}
 
-
-<h4>Date de publication :</h4>
+<h5>Date de publication :</h5>
 <div class="row">
 	{{ form_row(form.min)}}
 	{{ form_row(form.max)}}
 </div>
 
-<button type="submit" class="btn btn-primary w-100">Filtrer</button>
+<button type="submit" class="btn btn-success">Rechercher</button>
+
 {{ form_end(form) }}
