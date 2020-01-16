@@ -20,11 +20,12 @@ class ForumController extends AbstractController
     /**
      * @Route("/forum", name="forum")
      */
-    public function index(PostRepository $repo)
+    public function index(PostRepository $repo, Request $request)
     {
         $posts = $repo->findAll();
         $data = new SearchData();
         $form = $this->createForm(SearchForm::class, $data);
+        $form->handleRequest($request);
 
         return $this->render('forum/index.html.twig', [
             'controller_name' => 'ForumController',
