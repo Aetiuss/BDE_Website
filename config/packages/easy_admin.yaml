@@ -9,11 +9,7 @@ easy_admin:
         class: App\Entity\User
         list:
           fields: ['id', 'username', 'email', 'roles', 'posts']
-        form:
-          fields:
-            - {property: 'username' }
-            - {property: 'email' }
-            - {property: 'roles' }
+        
       Post:
         class: App\Entity\Post
         list:
