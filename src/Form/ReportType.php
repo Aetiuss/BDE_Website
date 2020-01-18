@@ -12,10 +12,7 @@ class ReportType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('content')
-            ->add('user')
-            ->add('post')
-        ;
+            ->add('content');
     }
 
     public function configureOptions(OptionsResolver $resolver)

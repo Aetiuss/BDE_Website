@@ -7,10 +7,12 @@ use App\Entity\Comment;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Post;
+use App\Entity\Report;
 use App\Entity\User;
 use App\Form\CommentType;
 use App\Repository\PostRepository;
 use App\Form\PostType;
+use App\Form\ReportType;
 use App\Form\SearchType;
 use Doctrine\ORM\EntityManagerInterface as ORMEntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -105,5 +107,26 @@ class ForumController extends AbstractController
             'formPost' => $form->createView(),
             'editMode' => $post->getId() !== null
         ]);
+    }
+    /**
+     * @Route("/forum/post/{id}/report", name="forum_report")
+     */
+    public function report(Post $post, Request $request, ORMEntityManagerInterface $manager)
+    {
+        $report = new Report();
+        $form = $this->createForm(ReportType::class);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $report->setUser($this->getUser())
+                ->setPost($post);
+
+            $manager->persist($report);
+            $manager->flush();
+        }
+
+
+        return $this->render('forum/report.html.twig', ['reportForm' => $form->createView()]);
     }
 }
