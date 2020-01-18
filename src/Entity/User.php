@@ -72,6 +72,11 @@ class User implements UserInterface
      */
     private $reports;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isBanned;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -234,6 +239,18 @@ class User implements UserInterface
                 $report->setR(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIsBanned(): ?bool
+    {
+        return $this->isBanned;
+    }
+
+    public function setIsBanned(?bool $isBanned): self
+    {
+        $this->isBanned = $isBanned;
 
         return $this;
     }

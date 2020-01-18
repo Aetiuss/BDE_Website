@@ -13,7 +13,7 @@ easy_admin:
       Post:
         class: App\Entity\Post
         list:
-          fields: ['id', 'title', 'category', 'user.username', 'createdAt', 'report']
+          fields: ['id', 'title', 'category', 'user.username', 'createdAt', 'reports']
 
       Report:
         class: App\Entity\Report
