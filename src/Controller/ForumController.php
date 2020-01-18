@@ -114,7 +114,8 @@ class ForumController extends AbstractController
     public function report(Post $post, Request $request, ORMEntityManagerInterface $manager)
     {
         $report = new Report();
-        $form = $this->createForm(ReportType::class);
+
+        $form = $this->createForm(ReportType::class, $report);
 
         $form->handleRequest($request);
 
@@ -124,6 +125,8 @@ class ForumController extends AbstractController
 
             $manager->persist($report);
             $manager->flush();
+
+            return $this->redirectToRoute('forum_show', ['id' => $post->getId()]);
         }
 
 

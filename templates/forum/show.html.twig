@@ -15,7 +15,8 @@
 			<p>{{ post.content | raw }}</p>
 		</div>
 	</post>
-	<button class='btn btn-danger' href='{{ }}'>Signaler ce post</button>
+	<a class='btn btn-warning' href='{{ path ('forum_report', {'id': post.id}) }}'>Signaler ce post</a>
+
 
 	<section id="commentaires">
 		<h1>{{ post.comments | length }}

@@ -1,7 +1,13 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-	{{ form_start(reportForm) }}
 
+	<h5>Merci d'indiquer ci-dessous la raison de votre signalement :</h5>
+	{{ form_start(reportForm) }}
+	{{ form_row(reportForm.content, {'label' : 'Signalement', 'attr' :{'placeholder' : 'Justification du signalement'} })}}
+
+	<button type="submit" class="btn btn-outline-danger">Envoyer mon signalement</button>
 	{{ form_end(reportForm) }}
+
+
 {% endblock %}
