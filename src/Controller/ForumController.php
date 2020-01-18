@@ -11,7 +11,7 @@ use App\Entity\User;
 use App\Form\CommentType;
 use App\Repository\PostRepository;
 use App\Form\PostType;
-use App\Form\SearchForm;
+use App\Form\SearchType;
 use Doctrine\ORM\EntityManagerInterface as ORMEntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -24,7 +24,7 @@ class ForumController extends AbstractController
     {
         $posts = $repo->findAll();
         $data = new SearchData();
-        $form = $this->createForm(SearchForm::class, $data);
+        $form = $this->createForm(SearchType::class, $data);
         $form->handleRequest($request);
 
         return $this->render('forum/index.html.twig', [

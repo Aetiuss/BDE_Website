@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\CommentRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ReportRepository")
  */
-class Comment
+class Report
 {
     /**
      * @ORM\Id()
@@ -16,28 +16,22 @@ class Comment
      */
     private $id;
 
-
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $content;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="reports")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $createdAt;
+    private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Post", inversedBy="comments")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Post", inversedBy="reports")
      * @ORM\JoinColumn(nullable=false)
      */
     private $post;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="comments")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $author;
 
     public function getId(): ?int
     {
@@ -49,21 +43,21 @@ class Comment
         return $this->content;
     }
 
-    public function setContent(string $content): self
+    public function setContent(?string $content): self
     {
         $this->content = $content;
 
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getUser(): ?User
     {
-        return $this->createdAt;
+        return $this->user;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function setUser(?User $user): self
     {
-        $this->createdAt = $createdAt;
+        $this->user = $user;
 
         return $this;
     }
@@ -80,14 +74,14 @@ class Comment
         return $this;
     }
 
-    public function getAuthor(): ?User
+    public function getR(): ?User
     {
-        return $this->author;
+        return $this->r;
     }
 
-    public function setAuthor(?User $author): self
+    public function setR(?User $r): self
     {
-        $this->author = $author;
+        $this->r = $r;
 
         return $this;
     }

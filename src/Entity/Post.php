@@ -56,10 +56,6 @@ class Post
      */
     private $isPrivate;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="post_reports")
-     */
-    private $post_report;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="posts")
@@ -67,10 +63,15 @@ class Post
      */
     private $user;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Report", mappedBy="post")
+     */
+    private $reports;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
-        $this->post_report = new ArrayCollection();
+        $this->reports = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -193,32 +194,6 @@ class Post
         return $this;
     }
 
-    /**
-     * @return Collection|User[]
-     */
-    public function getPostReport(): Collection
-    {
-        return $this->post_report;
-    }
-
-    public function addPostReport(User $postReport): self
-    {
-        if (!$this->post_report->contains($postReport)) {
-            $this->post_report[] = $postReport;
-        }
-
-        return $this;
-    }
-
-    public function removePostReport(User $postReport): self
-    {
-        if ($this->post_report->contains($postReport)) {
-            $this->post_report->removeElement($postReport);
-        }
-
-        return $this;
-    }
-
     public function __toString()
     {
         return $this->title;
@@ -232,6 +207,37 @@ class Post
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Report[]
+     */
+    public function getReports(): Collection
+    {
+        return $this->reports;
+    }
+
+    public function addReport(Report $report): self
+    {
+        if (!$this->reports->contains($report)) {
+            $this->reports[] = $report;
+            $report->setPost($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReport(Report $report): self
+    {
+        if ($this->reports->contains($report)) {
+            $this->reports->removeElement($report);
+            // set the owning side to null (unless already changed)
+            if ($report->getPost() === $this) {
+                $report->setPost(null);
+            }
+        }
 
         return $this;
     }
