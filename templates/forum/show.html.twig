@@ -15,7 +15,9 @@
 			<p>{{ post.content | raw }}</p>
 		</div>
 	</post>
-	<a class='btn btn-warning' href='{{ path ('forum_report', {'id': post.id}) }}'>Signaler ce post</a>
+	{% if app.user %}
+		<a class='btn btn-warning' href='{{ path ('forum_report', {'id': post.id}) }}'>Signaler ce post</a>
+	{% endif %}
 
 
 	<section id="commentaires">
