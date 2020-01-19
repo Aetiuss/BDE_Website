@@ -54,13 +54,13 @@ class SearchType extends AbstractType
 
         $resolver->setDefaults([
             "data_class" => SearchData::class,
-            "method" => "GET",
+            "method" => "get",
             "csrf_protection" => false
         ]);
     }
 
     public function getBlockPrefix()
     {
-        return "";
+        return '';
     }
 }

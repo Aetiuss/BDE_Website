@@ -8,31 +8,49 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Post;
 use App\Entity\Report;
-use App\Entity\User;
 use App\Form\CommentType;
 use App\Repository\PostRepository;
 use App\Form\PostType;
 use App\Form\ReportType;
 use App\Form\SearchType;
 use Doctrine\ORM\EntityManagerInterface as ORMEntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 class ForumController extends AbstractController
 {
     /**
+     * @var PostRepository
+     */
+    private $repository;
+
+    public function __construct(PostRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
+
+    /**
      * @Route("/forum", name="forum")
      */
-    public function index(PostRepository $repo, Request $request)
+    public function index(PostRepository $repo, Request $request, PaginatorInterface $paginator)
     {
-        $posts = $repo->findAll();
-        $data = new SearchData();
-        $form = $this->createForm(SearchType::class, $data);
+        $posts = $repo->findBy([], ['category' => 'DESC']);
+        $search = new SearchData();
+        $form = $this->createForm(SearchType::class, $search);
         $form->handleRequest($request);
+
+        $properties = $paginator->paginate(
+            $this->repository->findAllVisibleQuery($search),
+            $request->query->getInt('page', 1),
+            12
+        );
 
         return $this->render('forum/index.html.twig', [
             'controller_name' => 'ForumController',
             'posts' => $posts,
-            'form' => $form->createView()
+            'properties' => $properties,
+            'form' => $form->createView(),
 
         ]);
     }

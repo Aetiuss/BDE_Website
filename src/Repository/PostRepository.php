@@ -2,9 +2,13 @@
 
 namespace App\Repository;
 
+use App\Data\SearchData;
 use App\Entity\Post;
+use App\Form\SearchType;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * @method Post|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,32 +23,17 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
-    // /**
-    //  * @return Post[] Returns an array of Post objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return Query
+     */
+    public function findAllVisibleQuery(): Query
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        return $this->findVisibleQuery()
+            ->getQuery();
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Post
+    public function findVisibleQuery(): QueryBuilder
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        return $this->createQueryBuilder('p');
     }
-    */
 }
