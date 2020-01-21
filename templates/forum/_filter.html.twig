@@ -1,21 +1,35 @@
 {{ form_start(form, {'attr': {'class': 'filter'},'method': 'GET'}) }}
 
-<h5>Rechercher par termes:</h5>
-<div class="row">
-	{{ form_row(form.q)}}
-</div>
+<h5>Rechercher par :</h5>
+<ul>
+	<li><h6>Terme</h6>
+		<div class="row">
+			{{ form_row(form.q)}}
+		</div>
+	</li>
+	
+	<br>
 
-<h5>Catégories :</h5>
-<div class="row">
-	{{ form_row(form.categories)}}
-</div>
+	<li><h6>Catégorie</h6>
+		<div class="row">
+			{{ form_row(form.categories)}}
+		</div>
+	</li>
+
+	<br>
+
+	<li><h6>Date de publication</h6>
+		<div class="row">
+			{{ form_row(form.min)}}
+			{{ form_row(form.max)}}
+		</div>
+	</li>
+</ul>
 
 
-<h5>Date de publication :</h5>
-<div class="row">
-	{{ form_row(form.min)}}
-	{{ form_row(form.max)}}
-</div>
+
+
+
 
 <button type="submit" class="btn btn-success">Rechercher</button>
 

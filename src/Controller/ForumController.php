@@ -16,6 +16,7 @@ use App\Form\SearchType;
 use Doctrine\ORM\EntityManagerInterface as ORMEntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class ForumController extends AbstractController
 {
@@ -32,6 +33,7 @@ class ForumController extends AbstractController
 
     /**
      * @Route("/forum", name="forum")
+     * @IsGranted("ROLE_USER") 
      */
     public function index(PostRepository $repo, Request $request, PaginatorInterface $paginator)
     {
