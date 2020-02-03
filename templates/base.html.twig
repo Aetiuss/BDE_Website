@@ -51,12 +51,19 @@
 							<a class="nav-link" href="{{ path('security_logout') }}">
 								Déconnexion</a>
 						</li>
+					{% elseif app.user.role == '["ROLE_ADMIN","ROLE_USER"]' %}
+						<li class="nav-item">
+							<a class="nav-link" href="/admin">
+								Administration</a>
+						</li>
+
 					{% else %}
 						<li class="nav-item">
 							<a class="nav-link" href="{{ path('security_logout') }}">
 								Déconnexion</a>
 						</li>
 					{% endif %}
+
 
 				</div>
 			</nav>
@@ -66,4 +73,4 @@
 			</body>
 		</body>
 	</html>
-</body></html>
+</body></html></body></html>

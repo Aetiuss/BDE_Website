@@ -33,7 +33,7 @@ class ForumController extends AbstractController
 
     /**
      * @Route("/forum", name="forum")
-     * @IsGranted("ROLE_USER") 
+     * 
      */
     public function index(PostRepository $repo, Request $request, PaginatorInterface $paginator)
     {
@@ -43,10 +43,12 @@ class ForumController extends AbstractController
         $form->handleRequest($request);
 
         $properties = $paginator->paginate(
-            $this->repository->findAllVisibleQuery($search),
+            $this->repository->findVisibleQuery($search),
             $request->query->getInt('page', 1),
-            12
+            1
         );
+
+        //return dd($properties);
 
         return $this->render('forum/index.html.twig', [
             'controller_name' => 'ForumController',
@@ -100,7 +102,8 @@ class ForumController extends AbstractController
 
     /**
      * @Route("/forum/new", name="forum_create")
-     * @Route("/forum/post/{id}/edit", name="forum_edit")
+     * //@Route("/forum/post/{id}/edit", name="forum_edit")
+     * @IsGranted("ROLE_USER") 
      */
     public function formPost(Post $post = null, Request $request, ORMEntityManagerInterface $manager)
     {
@@ -130,6 +133,7 @@ class ForumController extends AbstractController
     }
     /**
      * @Route("/forum/post/{id}/report", name="forum_report")
+     * @IsGranted("ROLE_USER") 
      */
     public function report(Post $post, Request $request, ORMEntityManagerInterface $manager)
     {
