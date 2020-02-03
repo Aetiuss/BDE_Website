@@ -48,11 +48,9 @@ class ForumController extends AbstractController
             1
         );
 
-        //return dd($properties);
 
         return $this->render('forum/index.html.twig', [
             'controller_name' => 'ForumController',
-            'posts' => $posts,
             'properties' => $properties,
             'form' => $form->createView(),
 

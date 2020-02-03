@@ -16,7 +16,7 @@
 				<section class="post">
 					<div class="grid">
 						{% if app.user %}
-							{% for post in posts %}
+							{% for post in properties.items %}
 								<post>
 									<h2>{{ post.title }}</h2>
 									<div class="metadata">Ecrit le
