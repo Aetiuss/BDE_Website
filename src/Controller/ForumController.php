@@ -45,7 +45,7 @@ class ForumController extends AbstractController
         $properties = $paginator->paginate(
             $this->repository->findVisibleQuery($search),
             $request->query->getInt('page', 1),
-            1
+            12
         );
 
 
