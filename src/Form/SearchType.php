@@ -33,18 +33,18 @@ class SearchType extends AbstractType
                 'expanded' => true,
                 'multiple' => true
             ])
-            ->add('min', DateType::class, [
+            ->add('dateMin', DateType::class, [
                 'label' => false,
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'Date min'
                 ]
             ])
-            ->add('max', DateType::class, [
+            ->add('dateMax', DateType::class, [
                 'label' => false,
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'Date min'
+                    'placeholder' => 'Date max'
                 ]
             ]);
     }
@@ -54,7 +54,7 @@ class SearchType extends AbstractType
 
         $resolver->setDefaults([
             'data_class' => SearchData::class,
-            'method' => 'get',
+            'method' => 'post',
             'csrf_protection' => false
         ]);
     }

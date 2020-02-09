@@ -17,12 +17,12 @@ class SearchData
     public $categories = [];
 
     /**
-     * @var nullinteger
+     * @var Date
      */
-    public $max;
+    public $dateMin;
 
     /**
-     * @var nullinteger
+     * @var Date
      */
-    public $min;
+    public $dateMax;
 }

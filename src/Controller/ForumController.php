@@ -33,17 +33,16 @@ class ForumController extends AbstractController
 
     /**
      * @Route("/forum", name="forum")
-     * 
      */
-    public function index(PostRepository $repo, Request $request, PaginatorInterface $paginator)
+    public function index(Request $request, PaginatorInterface $paginator)
     {
-        $posts = $repo->findBy([], ['category' => 'DESC']);
-        $search = new SearchData();
-        $form = $this->createForm(SearchType::class, $search);
+        $data = new SearchData();
+        $form = $this->createForm(SearchType::class, $data);
         $form->handleRequest($request);
+        dump($data);
 
         $properties = $paginator->paginate(
-            $this->repository->findVisibleQuery($search),
+            $this->repository->findSearch($data),
             $request->query->getInt('page', 1),
             12
         );
@@ -53,7 +52,6 @@ class ForumController extends AbstractController
             'controller_name' => 'ForumController',
             'properties' => $properties,
             'form' => $form->createView(),
-
         ]);
     }
 

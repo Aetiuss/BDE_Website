@@ -1,16 +1,18 @@
-{{ form_start(form, {'attr': {'class': 'filter'},'method': 'GET'}) }}
+{{ form_start(form, {'attr': {'class': 'filter'},'method': 'POST'}) }}
 
 <h5>Rechercher par :</h5>
 <ul>
-	<li><h6>Terme</h6>
+	<li>
+		<h6>Terme</h6>
 		<div class="row">
 			{{ form_row(form.q)}}
 		</div>
 	</li>
-	
+
 	<br>
 
-	<li><h6>Catégorie</h6>
+	<li>
+		<h6>Catégorie</h6>
 		<div class="row">
 			{{ form_row(form.categories)}}
 		</div>
@@ -18,19 +20,16 @@
 
 	<br>
 
-	<li><h6>Date de publication</h6>
+	<li>
+		<h6>Date de publication (Après - Avant)</h6>
 		<div class="row">
-			{{ form_row(form.min)}}
-			{{ form_row(form.max)}}
+			{{ form_row(form.dateMin)}}
+
+			{{ form_row(form.dateMax)}}
 		</div>
 	</li>
 </ul>
 
-
-
-
-
-
-<button type="submit" class="btn btn-success">Rechercher</button>
+<button type="submit" class="btn btn-success w-100">Filtrer</button>
 
 {{ form_end(form) }}

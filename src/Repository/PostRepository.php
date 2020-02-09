@@ -15,6 +15,7 @@ use Doctrine\ORM\QueryBuilder;
  * @method Post|null findOneBy(array $criteria, array $orderBy = null)
  * @method Post[]    findAll()
  * @method Post[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Post[]    findSearch()
  */
 class PostRepository extends ServiceEntityRepository
 {
@@ -23,17 +24,43 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
-    /**
-     * @return Query
-     */
-    public function findAllVisibleQuery(): Query
-    {
-        return $this->findVisibleQuery()
-            ->getQuery();
-    }
-
     public function findVisibleQuery(): QueryBuilder
     {
         return $this->createQueryBuilder('p');
+    }
+
+    /**
+     * @return Post[]
+     */
+    public function findSearch(SearchData $search): array
+    {
+        $query = $this
+            ->createQueryBuilder('p')
+            ->select('p');
+
+        if (empty($search)) {
+            return $this->findBy([], ['category' => 'DESC']);
+        } else {
+            if (!empty($search->q)) {
+                $query = $query
+                    ->andWhere('p.title LIKE :q OR p.content LIKE :q')
+                    ->setParameter('q', "%{$search->q}%");
+            }
+
+            /* if (!empty($search->dateMin)) {
+                $query = $query
+                    ->andWhere('p.createdAt LIKE :q OR p.content LIKE :q')
+                    ->setParameter('q', "%{$search->q}%");
+            }
+
+            if (!empty($search->dateMax)) {
+                $query = $query
+                    ->andWhere('p.createdAt LIKE :q OR p.content LIKE :q')
+                    ->setParameter('q', "%{$search->q}%");
+            } */
+
+
+            return $query->getQuery()->getResult();
+        }
     }
 }
