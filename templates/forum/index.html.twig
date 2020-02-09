@@ -50,6 +50,8 @@
 
 										<div class="content">
 											<p>{{ post.content | split('</p>') |first }}</p>
+											<h6>Réponses :
+												{{ post.comments | length() }}</h6>
 											<a href="{{ path ('forum_show', {'id': post.id}) }}" class="btn btn-warning">Lire la suite</a>
 										</div>
 										<br>
