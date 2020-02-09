@@ -47,17 +47,23 @@ class PostRepository extends ServiceEntityRepository
                     ->setParameter('q', "%{$search->q}%");
             }
 
-            /* if (!empty($search->dateMin)) {
+            if (!empty($search->dateMin)) {
                 $query = $query
-                    ->andWhere('p.createdAt LIKE :q OR p.content LIKE :q')
-                    ->setParameter('q', "%{$search->q}%");
+                    ->andWhere('p.createdAt  >= :dateMin')
+                    ->setParameter('dateMin', $search->dateMin);
             }
 
             if (!empty($search->dateMax)) {
                 $query = $query
-                    ->andWhere('p.createdAt LIKE :q OR p.content LIKE :q')
-                    ->setParameter('q', "%{$search->q}%");
-            } */
+                    ->andWhere('p.createdAt <= :dateMax')
+                    ->setParameter('dateMax', $search->dateMax);
+            }
+
+            if (!empty($search->categories)) {
+                $query = $query
+                    ->andWhere('p.category IN (:categories)')
+                    ->setParameter('categories', $search->categories);
+            }
 
 
             return $query->getQuery()->getResult();
