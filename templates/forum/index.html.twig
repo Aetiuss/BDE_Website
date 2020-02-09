@@ -9,10 +9,10 @@
 	<br>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-3">
+			<div class="col-md-4">
 				{% include "forum/_filter.html.twig" with {form: form} only %}
 			</div>
-			<div class="col-md-9">
+			<div class="col-md-8">
 				<section class="post">
 					<div class="grid">
 						{% if app.user %}
@@ -28,7 +28,6 @@
 									</div>
 
 									<div class="content">
-										<img src="{{ post.picture }}" alt="">
 										<p>{{ post.content | raw }}</p>
 										<a href="{{ path ('forum_show', {'id': post.id}) }}" class="btn btn-warning">Lire la suite</a>
 									</div>
@@ -50,8 +49,7 @@
 										</div>
 
 										<div class="content">
-											<img src="{{ post.picture }}" alt="">
-											<p>{{ post.content | split('<p>') |first }}</p>
+											<p>{{ post.content | split('</p>') |first }}</p>
 											<a href="{{ path ('forum_show', {'id': post.id}) }}" class="btn btn-warning">Lire la suite</a>
 										</div>
 										<br>

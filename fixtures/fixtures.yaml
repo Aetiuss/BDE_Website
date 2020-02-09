@@ -1,0 +1,33 @@
+App\Entity\Role:
+  role_1:
+    title: ROLE_USER
+  role_2:
+    title: ROLE_ADMIN
+
+App\Entity\Category:
+  category_{1..4}:
+    title: <chemicalElement()>
+    description: <sentence()>
+
+App\Entity\User:
+  user_{1..20}:
+    email: <email()>
+    username: <username()>
+    password: <md5()>
+    roles: '@role_1'
+
+App\Entity\Post:
+  post_{1..40}:
+    title: <sentence()>
+    content: <text(100)>
+    picture: http://picsum.photos/id/<numberBetween(400,800)>/290/180
+    createdAt: <dateTimeBetween('2020-01-01', '2020-01-30')>
+    category: '@category_<numberBetween(1, 4)>'
+    user: '@user_<numberBetween(1, 20)>'
+
+App\Entity\Comment:
+  comment_{1..120}:
+    author: '@user_<numberBetween(1, 20)>'
+    content: <text(30)>
+    createdAt: <dateTimeBetween('2020-02-01', '2020-02-10')>
+    post: '@post_<numberBetween(1, 40)>'
