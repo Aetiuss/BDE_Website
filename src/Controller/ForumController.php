@@ -39,7 +39,8 @@ class ForumController extends AbstractController
         $data = new SearchData();
         $form = $this->createForm(SearchType::class, $data);
         $form->handleRequest($request);
-        dump($data);
+        $user = $this->getUser();
+        //dd($user);
 
         $properties = $paginator->paginate(
             $this->repository->findSearch($data),

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\RegistrationType;
 use App\Entity\User;
+use App\Repository\RoleRepository;
 use Doctrine\ORM\EntityManagerInterface as ORMEntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,11 +16,14 @@ class SecurityController extends AbstractController
     /**
      * @Route("/inscription", name="security_registration")
      */
-    public function registration(Request $request, ORMEntityManagerInterface $manager, UserPasswordEncoderInterface $encoder)
+    public function registration(Request $request, ORMEntityManagerInterface $manager, UserPasswordEncoderInterface $encoder, RoleRepository $repo)
     {
         $user = new User();
 
         $form = $this->createForm(RegistrationType::class, $user);
+
+        $role = $repo->findby(['title' => 'ROLE_USER']);
+        //dd($role);
 
         $form->handleRequest($request);
 
@@ -27,6 +31,7 @@ class SecurityController extends AbstractController
             $hash = $encoder->encodePassword($user, $user->getPassword());
 
             $user->setPassword($hash);
+            $user->setRoles($role[0]);
 
             $manager->persist($user);
             $manager->flush();
@@ -51,6 +56,5 @@ class SecurityController extends AbstractController
      * @Route("/deconnexion", name="security_logout")
      */
     public function logout()
-    {
-    }
+    { }
 }

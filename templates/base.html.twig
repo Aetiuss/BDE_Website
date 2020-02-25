@@ -37,33 +37,32 @@
 						<a class="nav-link" href="{{ path('forum')}}">
 							Forum</a>
 					</li>
-					{% if not app.user %}
+					{# {{dump(app.user)}} #}
+					{% if app.user %}
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('security_logout') }}">
+								Déconnexion</a>
+						</li>
+
+						{% if not app.user.isBanned %}
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path('forum_create') }}">
+									Créer un post</a>
+							</li>
+						{% endif %}
+
+						{% if app.user.roles[0] == 'ROLE_ADMIN' %}
+							<li class="nav-item">
+								<a class="nav-link" href="/admin">
+									Administration</a>
+							</li>
+						{% endif %}
+					{% else %}
 						<li class="nav-item">
 							<a class="nav-link" href="{{ path('security_login') }}">
 								Connexion</a>
 						</li>
-					{% elseif not app.user.isBanned %}
-						<li class="nav-item">
-							<a class="nav-link" href="{{ path('forum_create') }}">
-								Créer un post</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="{{ path('security_logout') }}">
-								Déconnexion</a>
-						</li>
-					{% elseif app.user.role == '["ROLE_ADMIN","ROLE_USER"]' %}
-						<li class="nav-item">
-							<a class="nav-link" href="/admin">
-								Administration</a>
-						</li>
-
-					{% else %}
-						<li class="nav-item">
-							<a class="nav-link" href="{{ path('security_logout') }}">
-								Déconnexion</a>
-						</li>
 					{% endif %}
-
 
 				</div>
 			</nav>
@@ -73,4 +72,4 @@
 			</body>
 		</body>
 	</html>
-</body></html></body></html>
+</body></html></body></html></body></html></body></html>

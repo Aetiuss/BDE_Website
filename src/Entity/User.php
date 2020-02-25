@@ -132,6 +132,7 @@ class User implements UserInterface
     public function getSalt()
     { }
 
+
     public function getRoles()
     {
         $role = [$this->roles->getTitle()];
