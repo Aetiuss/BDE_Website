@@ -52,7 +52,7 @@ class Post
     private $comments;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\Column(type="boolean", nullable=false)
      */
     private $isPrivate;
 
@@ -64,7 +64,7 @@ class Post
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Report", mappedBy="post")
+     * @ORM\OneToMany(targetEntity="App\Entity\Report", mappedBy="post", cascade={"remove"})
      */
     private $reports;
 

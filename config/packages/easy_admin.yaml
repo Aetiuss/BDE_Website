@@ -1,24 +1,33 @@
 easy_admin:
     entities:
-      Category:
+      Signalement:
+        class: App\Entity\Report
+        list:
+          fields: ['id', 'post', 'user', 'content']
+
+      Catégorie:
         class: App\Entity\Category
         list:
                 fields: ['id', 'title', 'description', 'posts']
         
-      User:
+      Utilisateur:
         class: App\Entity\User
         list:
           fields: ['id', 'username', 'email', 'roles', 'posts']
         
-      Post:
+      Publication:
         class: App\Entity\Post
         list:
           fields: ['id', 'title', 'category', 'user.username', 'createdAt', 'reports']
 
-      Report:
-        class: App\Entity\Report
+      Réponses:
+        class: App\Entity\Comment
         list:
-          fields: ['id', 'post', 'user', 'content']
+          fields: ['id', 'post', 'author', 'createdAt']
+
+      
+
+      
 
 #    design:
 #      assets:

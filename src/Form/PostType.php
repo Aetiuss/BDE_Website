@@ -21,7 +21,9 @@ class PostType extends AbstractType
                 'class' => Category::class,
                 'choice_label' => 'title'
             ])
-            ->add('isPrivate', CheckboxType::class)
+            ->add('isPrivate', CheckboxType::class, [
+                'required' => false
+            ])
             ->add('picture');
     }
 

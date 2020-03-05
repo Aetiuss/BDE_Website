@@ -115,6 +115,7 @@ class ForumController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             if (!$post->getId()) {
                 $post->SetCreatedAt(new \Datetime());
+                $post->SetUser($this->getUser());
             }
 
             $manager->persist($post);
@@ -125,7 +126,7 @@ class ForumController extends AbstractController
 
         return $this->render('forum/create.html.twig', [
             'formPost' => $form->createView(),
-            'editMode' => $post->getId() !== null
+            'editMode' => $post->getId() !== null,
         ]);
     }
     /**
@@ -152,5 +153,13 @@ class ForumController extends AbstractController
 
 
         return $this->render('forum/report.html.twig', ['reportForm' => $form->createView()]);
+    }
+
+    /**
+     * @Route("/mentions-legales", name="mentions-legales")
+     */
+    public function mentions_legales()
+    {
+        return $this->render('/mld.html.twig');
     }
 }

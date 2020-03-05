@@ -15,25 +15,51 @@
 				<section class="post">
 					<div class="grid">
 						{% if app.user %}
-							{% for post in properties.items %}
-								<post>
-									<h2>{{ post.title }}</h2>
-									<div class="metadata">Ecrit le
-										{{ post.createdAt | date('d/m/Y') }}
-										à
-										{{ post.createdAt | date('h:i')}}
-										dans la catégorie
-										<span class="badge badge-primary">{{ post.category.title }}</span>
-									</div>
+							{% if app.user.roles[0] == 'ROLE_ADMIN' %}
+								{% for post in properties.items %}
+									<post>
+										<h2>{{ post.title }}</h2>
+										<div class="metadata">Ecrit le
+											{{ post.createdAt | date('d/m/Y') }}
+											à
+											{{ post.createdAt | date('h:i')}}
+											dans la catégorie
+											<span class="badge badge-primary">{{ post.category.title }}</span>
+										</div>
 
-									<div class="content">
-										<p>{{ post.content | raw }}</p>
-										<a href="{{ path ('forum_show', {'id': post.id}) }}" class="btn btn-warning">Lire la suite</a>
-									</div>
-									<br>
-									<br>
-								</post>
-							{% endfor %}
+										<div class="content">
+											<p>{{ post.content | raw }}</p>
+											<a href="{{ path ('forum_show', {'id': post.id}) }}" class="btn btn-warning">Lire la suite</a>
+										</div>
+										<br>
+										<br>
+									</post>
+								{% endfor %}
+							{% else %}
+								{% for post in properties.items %}
+									{% if not post.isPrivate %}
+										<post>
+											<h5>{{ post.title }}</h5>
+											<div class="metadata">Ecrit le
+												{{ post.createdAt | date('d/m/Y') }}
+												à
+												{{ post.createdAt | date('h:i')}}
+												dans la catégorie
+												<span class="badge badge-primary">{{ post.category.title }}</span>
+											</div>
+
+											<div class="content">
+												<p>{{ post.content | split('</p>') |first }}</p>
+												<h6>Réponses :
+													{{ post.comments | length() }}</h6>
+												<a href="{{ path ('forum_show', {'id': post.id}) }}" class="btn btn-warning">Lire la suite</a>
+											</div>
+											<br>
+											<br>
+										</post>
+									{% endif %}
+								{% endfor %}
+							{% endif %}
 						{% else %}
 							{% for post in properties.items %}
 								{% if not post.isPrivate %}
